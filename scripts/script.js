@@ -1,17 +1,17 @@
 // button links
 document.getElementById('projectsButton')
     .addEventListener('click', function () {
-        window.location.href = './projects/index.html';
+        window.location.href = './projects/';
     });
 
 document.getElementById('projectsButton2')
 .addEventListener('click', function () {
-    window.location.href = './projects/index.html';
+    window.location.href = './projects/';
 });
 
 document.getElementById('footerprojects')
 .addEventListener('click', function () {
-    window.location.href = './projects/index.html';
+    window.location.href = './projects/';
 });
 
 document.getElementById('footerinstagram')
