@@ -60,8 +60,7 @@ footer .container ul li:hover {
   color: #748D92;
 }
 footer .container .fa {
-  font-size: 1.2em;
-  bottom: 2rem;
+  font-size: 1.2rem;
 }
 footer .container .fa:hover {
   cursor: pointer;
@@ -72,6 +71,17 @@ footer .container h1 {
 }
 footer .container h1:hover {
   cursor: pointer;
+}
+
+#footerleft {
+  padding-left: 8%;
+  padding-right: 1rem;
+}
+
+#footerright {
+  justify-content: flex-end;
+  padding-left: 1rem;
+  padding-right: 8%;
 }
 
 .copyright {
@@ -89,5 +99,23 @@ footer .container h1:hover {
 @media only screen and (max-width: 575px) {
   .copyright {
     font-size: 0.5rem;
+  }
+  footer .container {
+    max-width: calc(47% - 0.1rem);
+  }
+  #footerleft {
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+    padding-left: 3%;
+    padding-right: 0.1rem;
+  }
+  #footerright {
+    position: absolute;
+    right: 0;
+    width: auto !important;
+    padding-right: 3%;
+  }
+  #footerright ul {
+    padding-left: 0;
   }
 }/*# sourceMappingURL=style.css.map */
