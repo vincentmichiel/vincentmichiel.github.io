@@ -1,0 +1,498 @@
+@font-face {
+  font-family: mono;
+  src: url(../assets/fonts/mono.woff);
+}
+.navigation {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 25%;
+  min-width: 300px;
+  margin-top: -2rem;
+  margin-left: auto;
+  margin-right: 3%;
+  height: calc(100vh - 120px);
+  min-height: 400px;
+  background-color: #748D92;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.navigation .spacer {
+  position: relative;
+  width: 100%;
+  height: calc(1vh + 50px);
+}
+.navigation .button {
+  display: flex;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 80%;
+  margin-left: 20%;
+  height: 100px;
+  font-family: mono;
+  font-weight: 800;
+  font-size: 2em;
+  color: #D3D9D4;
+  line-height: 100px;
+  align-items: center;
+  cursor: pointer;
+}
+.navigation .button .indicator {
+  position: relative;
+  margin-right: 10%;
+  height: 70px;
+  width: 5px;
+  background-color: #3a4957;
+}
+.navigation .button .overlay {
+  top: 15px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #3a4957;
+  overflow: hidden;
+  width: 0px;
+  height: 70px;
+  transition: 0.3s ease-in-out;
+}
+.navigation .button:hover .overlay {
+  width: 8%;
+}
+
+.firstfill {
+  position: relative;
+  margin-top: calc(-100vh + 120px + 2rem);
+  left: 3%;
+  width: 35%;
+  height: calc(10vh + 100px);
+  background-color: #3a4957;
+}
+
+.firstcontainer {
+  border-radius: 8px;
+  display: flex;
+  position: relative;
+  margin-top: -80px;
+  left: 8%;
+  width: 45%;
+  height: calc(20vh + 300px);
+  background-color: #124E66;
+  align-items: center;
+}
+.firstcontainer img {
+  max-height: 80%;
+  width: auto;
+  margin-top: auto;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: -5%;
+}
+.firstcontainer .text {
+  margin-left: 12%;
+  margin-right: 5%;
+  margin-top: -60px;
+  width: auto;
+  height: auto;
+  font-family: mono;
+  font-size: 2em;
+  color: #D3D9D4;
+}
+.firstcontainer .footertext {
+  position: absolute;
+  bottom: 2em;
+  left: 12%;
+  width: auto;
+  height: auto;
+  font-family: mono;
+  font-size: 1em;
+  color: #D3D9D4;
+  transition: 0.2s ease-in-out;
+}
+.firstcontainer .footertext:hover {
+  transform: translateY(-0.3rem);
+  cursor: pointer;
+}
+
+.about-background {
+  border-radius: 8px;
+  z-index: 1;
+  position: relative;
+  display: flex;
+  width: 84%;
+  margin-left: 8%;
+  height: 90vh;
+  min-height: 520px;
+  margin-top: calc(2.5rem + 5vh);
+  background-color: #2E3944;
+}
+.about-background .banner {
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15%;
+  margin-top: 15vh;
+  height: 80vh;
+  min-height: 470px;
+  width: 35%;
+  background-color: #3a4957;
+}
+.about-background .banner h1 {
+  margin-top: 5vh;
+  margin-left: 15%;
+  color: #D3D9D4;
+  font-family: mono;
+  font-size: 2em;
+  padding-bottom: 12vh;
+}
+.about-background .banner .text {
+  font-size: 1em;
+  margin-left: 15%;
+  width: 70%;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: #D3D9D4;
+  font-family: mono;
+}
+.about-background img {
+  z-index: 2;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 40%;
+  height: 45vh;
+  min-height: 300px;
+  margin-top: 36vh;
+  margin-left: -3%;
+}
+
+.projectscontainer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: calc(8rem + 6vh);
+}
+.projectscontainer .background {
+  height: auto;
+  display: flex;
+  width: 35%;
+  background-color: #2E3944;
+}
+.projectscontainer .banner {
+  border-radius: 8px;
+  position: absolute;
+  margin-left: 15%;
+  margin-top: -3rem;
+  width: 20%;
+  min-width: 250px;
+  height: 25rem;
+  background-color: #748D92;
+  text-align: center;
+}
+.projectscontainer .banner h1 {
+  margin-top: 2.5rem;
+  font-family: mono;
+  font-size: 2rem;
+  color: #D3D9D4;
+}
+.projectscontainer .content {
+  display: flex;
+  border-radius: 8px;
+  margin-left: -27%;
+  margin-top: 14vh;
+  margin-bottom: 2rem;
+  width: 84%;
+  height: 75vh;
+  background-color: #3a4957;
+  justify-content: flex-end;
+}
+.projectscontainer .content .text {
+  margin-top: 20vh;
+  margin-right: 10%;
+  position: relative;
+  width: 40%;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: #D3D9D4;
+  font-family: mono;
+  font-size: 1em;
+}
+.projectscontainer .content .text .button {
+  position: relative;
+  margin-top: 3vh;
+  width: -moz-fit-content;
+  width: fit-content;
+  line-height: 3em;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 3em;
+  background-color: #748D92;
+  font-size: 1.5em;
+  transition: 0.2s ease-in-out;
+}
+.projectscontainer .content .text .button:hover {
+  background-color: #212A31;
+  color: #748D92;
+  cursor: pointer;
+}
+
+.contactcontainer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 95vh;
+  min-height: 730px;
+  margin-top: calc(8rem + 6vh);
+  justify-content: center;
+}
+.contactcontainer .background {
+  border-radius: 8px;
+  width: 84%;
+  height: inherit;
+  min-height: inherit;
+  background-color: #2E3944;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contactcontainer .background form {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.contactcontainer .background form h1 {
+  color: #D3D9D4;
+  font-family: mono;
+  font-size: 1em;
+}
+.contactcontainer .background input {
+  display: block;
+  border: 1px solid #D3D9D4;
+  background-color: rgba(255, 255, 255, 0);
+  margin-bottom: 30px;
+  width: 50%;
+  min-height: 45px;
+  padding: 0px 15px;
+  border-radius: 3px;
+  color: #D3D9D4;
+}
+.contactcontainer .background input.e-mail::-moz-placeholder {
+  font-size: 18px;
+  font-weight: bold;
+}
+.contactcontainer .background input.e-mail::placeholder {
+  font-size: 18px;
+  font-weight: bold;
+}
+.contactcontainer .background input.name.notvalid {
+  background-color: rgba(255, 0, 0, 0.11);
+  border: 2px solid red;
+}
+.contactcontainer .background input.mail.notvalid {
+  background-color: rgba(255, 0, 0, 0.11);
+  border: 2px solid red;
+}
+.contactcontainer .background input.subject.notvalid {
+  background-color: rgba(255, 0, 0, 0.11);
+  border: 2px solid red;
+}
+.contactcontainer .background textarea.message.notvalid {
+  background-color: rgba(255, 0, 0, 0.11);
+  border: 2px solid red;
+}
+.contactcontainer .background textarea {
+  display: block;
+  border: 1px solid #D3D9D4;
+  background-color: rgba(248, 248, 248, 0);
+  width: 50%;
+  min-height: 10rem;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 3px;
+  color: #fff;
+}
+.contactcontainer .background button.submit {
+  background-color: #748D92;
+  margin-top: 30px;
+  width: 116px;
+  height: 58px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+.contactcontainer .background button.submit:hover {
+  background-color: #212A31;
+  color: #748D92;
+}
+.contactcontainer .banner {
+  display: flex;
+  border-radius: 8px;
+  position: absolute;
+  width: 40%;
+  margin-left: 25%;
+  margin-top: -7rem;
+  height: 10rem;
+  background-color: #748D92;
+  align-items: center;
+}
+.contactcontainer .banner h1 {
+  margin-left: 10%;
+  font-family: mono;
+  font-size: 2rem;
+  color: #D3D9D4;
+}
+
+@media only screen and (max-height: 520px) {
+  .firstfill {
+    margin-top: calc(-400px + 2rem);
+  }
+  .navigation .spacer {
+    height: 30px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .firstfill {
+    margin-top: 0px;
+    width: 70%;
+  }
+  .firstcontainer {
+    margin-top: -120px;
+    width: 84%;
+    flex-direction: column;
+  }
+  .firstcontainer .text {
+    margin-left: 0;
+    margin-top: 3vh;
+  }
+  .firstcontainer .footertext {
+    left: auto;
+    right: auto;
+    bottom: 1.2em;
+  }
+  .firstcontainer img {
+    margin: 0;
+    margin-top: 3vh;
+    max-height: 60%;
+  }
+  .navigation {
+    border-radius: 0px;
+    min-height: 0px;
+    width: 100%;
+    height: 100px;
+    flex-direction: row;
+    margin-top: 0px;
+  }
+  .navigation .spacer {
+    width: 5%;
+    height: 100%;
+  }
+  .navigation .button {
+    font-size: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding-left: 2em;
+    padding-right: 2em;
+    transition: 0.2s ease-in-out;
+  }
+  .navigation .button:hover {
+    color: #748D92;
+    background-color: #212A31;
+  }
+  .navigation .indicator {
+    display: none;
+  }
+  .navigation .overlay {
+    display: none;
+  }
+  .about-background {
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 2rem;
+  }
+  .about-background .banner {
+    width: 84%;
+    margin-left: 8%;
+    text-align: center;
+    align-items: center;
+    margin-top: 8vh;
+    height: -moz-fit-content;
+    height: fit-content;
+    min-height: 0;
+    min-height: 0;
+    padding-bottom: 5rem;
+  }
+  .about-background .banner h1 {
+    margin-left: 0;
+    padding-bottom: 1rem;
+  }
+  .about-background .banner .text {
+    margin-left: 0;
+    width: 80%;
+    text-align: left;
+  }
+  .about-background img {
+    position: relative;
+    width: 60%;
+    min-width: 100px;
+    margin-left: 20%;
+    height: 20vh;
+    min-height: 120px;
+    margin-top: -2rem;
+  }
+  .projectscontainer .background {
+    height: 40vh;
+    min-height: 500px;
+  }
+  .projectscontainer .banner {
+    height: 15rem;
+  }
+  .projectscontainer .content {
+    height: 40vh;
+    min-height: 350px;
+    justify-content: center;
+  }
+  .projectscontainer .content .text {
+    width: 80%;
+    margin-top: 7rem;
+    margin-right: 0;
+  }
+  .contactcontainer .banner {
+    margin-top: -8.5rem;
+  }
+  .contactcontainer .background form {
+    align-items: center;
+  }
+  .contactcontainer .background input {
+    width: 80%;
+  }
+  .contactcontainer .background textarea {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .navigation .button {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-size: 1em;
+  }
+  .contactcontainer .banner {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .contactcontainer .banner h1 {
+    margin-left: 0;
+  }
+}/*# sourceMappingURL=home.css.map */

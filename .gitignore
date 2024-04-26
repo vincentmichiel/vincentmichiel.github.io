@@ -1,0 +1,12 @@
+# Mac OS X
+*.DS_Store
+.DS_Store
+
+# documentation files
+*.docx
+*.pptx
+*.txt
+
+# scss 
+*.scss
+*.css.map

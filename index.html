@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vincentmichiel | home</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <link href="stylesheets/home.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="contentwrapper">
+        <header id="top">
+            <h1 id="title">VINCENT MICHIEL</h1>
+        </header>
+        <div class="navigation" data-aos="fade-left" data-aos-duration="400" data-aos-easing="ease-in-out"
+            data-aos-once="true" data-aos-delay="250">
+            <div class="spacer"></div>
+            <div class="button" id="aboutButton">
+                <div class="overlay"></div>
+                <div class="indicator"></div>ABOUT
+            </div>
+            <div class="button" id="projectsButton">
+                <div class="overlay"></div>
+                <div class="indicator"></div>PROJECTS
+            </div>
+            <div class="button" id="contactButton">
+                <div class="overlay"></div>
+                <div class="indicator"></div>CONTACT
+            </div>
+            <div class="spacer"></div>
+        </div>
+        <div class="firstfill" data-aos="fade-left" data-aos-duration="500" data-aos-easing="ease-in-out"
+            data-aos-once="true"></div>
+        <div class="firstcontainer" data-aos="fade-right" data-aos-duration="300" data-aos-easing="ease-in-out"
+            data-aos-once="true" data-aos-delay="100">
+            <div class="text">Hi! <br> I'm Vincent.</div>
+            <div class="footertext" id="explorebutton">explore <i class="fa fa-chevron-down"></i></div>
+            <img src="./assets/img/pfp.jpg" alt="portrait picture" data-aos="fade-up" data-aos-duration="600"
+                data-aos-easing="ease-in-out" data-aos-once="true" data-aos-delay="200" />
+        </div>
+        <div class="about-background" id="about">
+            <div class="banner" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-out"
+                data-aos-once="true" data-aos-offset="100">
+                <h1 data-aos="fade-right" data-aos-duration="350" data-aos-easing="ease-in-out" data-aos-once="true"
+                    data-aos-offset="150">ABOUT ME</h1>
+                <div class="text" data-aos="fade-right" data-aos-duration="400" data-aos-easing="ease-in-out"
+                    data-aos-once="true" data-aos-offset="150">I'm a music composer and creative developer from the
+                    netherlands. <br><br> I study music technology at the school of arts in Utrect. I compose music for
+                    both digital and acoustic applications, combining a technological based workflow with a distinctive
+                    creative vision.</div>
+            </div>
+            <img src="./assets/img/piano.jpg" alt="picture of piano" data-aos="fade-left" data-aos-duration="350"
+                data-aos-easing="ease-in-out" data-aos-once="true" data-aos-offset="200" data-aos-delay="150" />
+        </div>
+        <div class="projectscontainer">
+            <div class="background"></div>
+            <div class="banner" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-out"
+                data-aos-once="true" data-aos-offset="200">
+                <h1 data-aos="fade-right" data-aos-duration="500" data-aos-easing="ease-in-out" data-aos-once="true"
+                    data-aos-offset="300">PROJECTS</h1>
+            </div>
+            <div class="content" data-aos="fade-right" data-aos-duration="500" data-aos-easing="ease-in-out"
+                data-aos-once="true" data-aos-offset="0">
+                <div class="text" data-aos="fade-up" data-aos-duration="350" data-aos-easing="ease-in-out"
+                    data-aos-once="true" data-aos-offset="150">I've worked on multiple types of projects, including
+                    electronic music production, composing film music, composing music for interactive installations and
+                    more.
+                    <div class="button" id="projectsButton2">VIEW PROJECTS</div>
+                </div>
+            </div>
+        </div>
+        <div class="contactcontainer">
+            <div class="banner" id="contact" data-aos="fade-up" data-aos-duration="350" data-aos-easing="ease-in-out"
+                data-aos-once="true" data-aos-offset="100">
+                <h1 data-aos="fade-right" data-aos-duration="500" data-aos-easing="ease-in-out" data-aos-once="true">
+                    CONTACT</h1>
+            </div>
+            <div class="background">
+                <form action="https://formspree.io/f/mqkrwbwa" method="POST">
+                    <h1>YOUR NAME</h1>
+                    <input type="text" name="Naam" class="name">
+                    <h1>E-MAIL</h1>
+                    <input type="email" name="E-mail" placeholder="email@example.com" class="mail" id="mail">
+                    <h1>SUBJECT</h1>
+                    <input type="text" name="Onderwerp" class="subject">
+                    <textarea name="Bericht" placeholder="" class="message"></textarea>
+                    <button type="submit" class="submit" value="send">send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container" style="padding-left: 8%; padding-right: 1rem;">
+            <ul>
+                <li id="footerhome">home</li>
+                <li id="footerabout">about</li>
+                <li id="footerprojects">projects</li>
+                <li id="footercontact">contact</li>
+            </ul>
+        </div>
+        <div class="container" style="justify-content: flex-end; padding-left:1rem; padding-right: 8%;">
+            <ul style="list-style-type: none;">
+                <li id="footerinstagram"> <i class="fa fa-instagram"></i>
+                    &nbsp vincentmichiel
+                </li>
+                <li id="footergithub"> <i class="fa fa-github" id="instagramlogo"></i>
+                    &nbsp github
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copyright">&copy 2024 Vincent Van den Broeck &nbsp &nbsp | &nbsp &nbsp website by Vincent Van den Broeck
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

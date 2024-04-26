@@ -1,0 +1,93 @@
+@font-face {
+  font-family: mono;
+  src: url(../assets/fonts/mono.woff);
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: #212A31;
+}
+
+.contentwrapper {
+  position: relative;
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 8rem;
+}
+
+header {
+  position: relative;
+  width: 97%;
+  height: 6rem;
+  line-height: 6rem;
+  padding-left: 3%;
+  margin: 0;
+  background-color: #2E3944;
+  font-family: "mono";
+  font-size: 0.5rem;
+  color: #D3D9D4;
+}
+header h1 {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+header h1:hover {
+  cursor: pointer;
+  color: #748D92;
+}
+
+footer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 20rem;
+  background-color: #124E66;
+  align-items: center;
+  color: #bbc4bd;
+  font-family: mono;
+}
+footer .container {
+  display: flex;
+  width: calc(42% - 1rem);
+  height: inherit;
+  align-items: center;
+}
+footer .container ul li {
+  margin-top: 1rem;
+}
+footer .container ul li:hover {
+  cursor: pointer;
+  color: #748D92;
+}
+footer .container .fa {
+  font-size: 1.2em;
+  bottom: 2rem;
+}
+footer .container .fa:hover {
+  cursor: pointer;
+}
+footer .container h1 {
+  font-size: 1em;
+  font-family: mono;
+}
+footer .container h1:hover {
+  cursor: pointer;
+}
+
+.copyright {
+  position: relative;
+  width: 100%;
+  height: 1.5rem;
+  background-color: #2E3944;
+  color: #bbc4bd;
+  line-height: 1.5rem;
+  font-family: mono;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 575px) {
+  .copyright {
+    font-size: 0.5rem;
+  }
+}/*# sourceMappingURL=style.css.map */
