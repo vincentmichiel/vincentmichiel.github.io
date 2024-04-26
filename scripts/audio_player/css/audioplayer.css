@@ -232,10 +232,19 @@
     width: 35px;
     height: 35px;
   }
+  .audioplayer-time-current {
+    margin-left: 3px;
+  }
+  .audioplayer-time-duration {
+    margin-right: 3px;
+  }
 }
 @media screen and (max-width: 420px) {
   .audioplayer-playpause {
     width: 28px;
     height: 28px;
+  }
+  .audioplayer-time-current {
+    display: none;
   }
 }/*# sourceMappingURL=audioplayer.css.map */
