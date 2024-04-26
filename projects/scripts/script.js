@@ -1,24 +1,24 @@
 // button links
 document.getElementById('title')
     .addEventListener('click', function () {
-        window.location.href = '../index.html';
+        window.location.href = '../';
     });
 
 document.getElementById('footerhome')
     .addEventListener('click', function () {
-        window.location.href = '../index.html';
+        window.location.href = '../';
     });
 
 // button links
 document.getElementById('footerabout')
     .addEventListener('click', function () {
-        window.location.href = '../index.html#about';
+        window.location.href = '../#about';
     });
 
 // button links
 document.getElementById('footercontact')
     .addEventListener('click', function () {
-        window.location.href = '../index.html#contact';
+        window.location.href = '../#contact';
     });
 
 
