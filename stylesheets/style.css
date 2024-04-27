@@ -113,9 +113,12 @@ footer .container h1:hover {
     position: absolute;
     right: 0;
     width: auto !important;
-    padding-right: 3%;
+    padding-right: 8%;
   }
   #footerright ul {
     padding-left: 0;
+  }
+  #footerright ul li t {
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */
