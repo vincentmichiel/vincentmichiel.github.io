@@ -19,6 +19,11 @@ document.getElementById('footerinstagram')
     window.open('https://www.instagram.com/vincentmichiel/', '_blank');
 });
 
+document.getElementById('footerspotify')
+    .addEventListener('click', function () {
+        window.open('https://open.spotify.com/artist/0S03qL9gzGua5s03vIc6US?si=m1NaAgMZTcSYApNlKf2wAA', '_blank');
+    });
+
 document.getElementById('footergithub')
 .addEventListener('click', function () {
     window.open('https://github.com/vincentmichiel', '_blank');
