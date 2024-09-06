@@ -521,4 +521,7 @@
   .contactcontainer .banner h1 {
     margin-left: 0;
   }
+  .contactcontainer .background .contactfooter .container a {
+    font-size: 0.8em;
+  }
 }/*# sourceMappingURL=home.css.map */
