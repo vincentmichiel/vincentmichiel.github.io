@@ -252,6 +252,7 @@
 .contactcontainer .background {
   border-radius: 8px;
   width: 84%;
+  padding-bottom: 3em;
   height: inherit;
   min-height: inherit;
   background-color: #2E3944;
@@ -349,6 +350,31 @@
   font-family: mono;
   font-size: 2rem;
   color: #D3D9D4;
+}
+.contactcontainer .contactfooter {
+  position: absolute;
+  bottom: -2em;
+  width: inherit;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.contactcontainer .contactfooter .container {
+  flex-grow: 1;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  height: inherit;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.contactcontainer .contactfooter .container a {
+  font-family: "mono";
+  color: #bbc4bd;
+  font-size: 1em;
+  text-decoration: none;
 }
 
 @media only screen and (max-height: 520px) {
