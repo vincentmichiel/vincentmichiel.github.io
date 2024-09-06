@@ -376,6 +376,9 @@
   font-size: 1em;
   text-decoration: none;
 }
+.contactcontainer .contactfooter .container a:hover {
+  color: #748D92;
+}
 
 @media only screen and (max-height: 520px) {
   .firstfill {
