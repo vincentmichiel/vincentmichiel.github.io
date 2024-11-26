@@ -1,4 +1,3 @@
-Paddle.Environment.set("sandbox");
 Paddle.Initialize({
   token: "test_576a670da1c59a1894c7202c319", // replace with a client-side token
   // prints events to console for debugging
