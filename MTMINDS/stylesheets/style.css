@@ -9,11 +9,11 @@ body {
 }
 
 .page-container {
-  max-width: 1000px;
-  margin: 0 auto 2em auto;
+  max-width: 900px;
+  margin: 2em auto;
+  text-align: center;
   padding-left: 1em;
   padding-right: 1em;
-  text-align: center;
 }
 
 .grid {
@@ -30,7 +30,4 @@ body {
     grid-auto-rows: 1fr;
     grid-template-columns: 1fr 1fr;
   }
-}
-.items-table {
-  font-size: smaller;
 }/*# sourceMappingURL=style.css.map */
