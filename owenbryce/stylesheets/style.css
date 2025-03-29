@@ -226,7 +226,7 @@ section .content-wrapper .falling-image {
     display: none;
   }
 }
-@media only screen and (max-width: 578px) {
+@media only screen and (max-width: 650px) {
   body {
     display: flex;
     flex-direction: column;
