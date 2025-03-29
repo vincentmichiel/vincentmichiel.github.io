@@ -1,0 +1,32 @@
+@font-face {
+  font-family: SerifPro;
+  src: url(../assets//fonts/SourceSerifPro-Regular.otf);
+}
+@font-face {
+  font-family: Serif-Extra-Light-Italic;
+  src: url(../assets//fonts/SourceSerifPro-ExtraLightIt.otf);
+}
+@font-face {
+  font-family: Serif-Light;
+  src: url(../assets//fonts/SourceSerifPro-Light.otf);
+}
+@font-face {
+  font-family: Serif-Light-Italic;
+  src: url(../assets//fonts/SourceSerifPro-LightIt.otf);
+}
+@font-face {
+  font-family: Serif-Semibold-Italic;
+  src: url(../assets//fonts/SourceSerifPro-SemiboldIt.otf);
+}
+@font-face {
+  font-family: Junicode;
+  src: url(../assets//fonts/Junicode-RegularCondensed.ttf);
+}
+@font-face {
+  font-family: Coolvetica;
+  src: url(../assets//fonts/Coolvetica_Rg.otf);
+}
+@font-face {
+  font-family: Coolvetica-Italic;
+  src: url(../assets//fonts/Coolvetica_Rg_It.otf);
+}/*# sourceMappingURL=fonts.css.map */
