@@ -232,6 +232,18 @@ section .content-wrapper .sitting-image {
   display: inherit;
 }
 
+.reset-margin-small-screen {
+  margin: inherit;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+
 @media only screen and (max-width: 1180px) {
   .small-screen-hide {
     display: none;
@@ -244,9 +256,17 @@ section .content-wrapper .sitting-image {
     justify-content: center;
   }
   section .content-wrapper .content-column {
-    margin: 1rem !important;
     align-items: center !important;
     flex-grow: 1 !important;
+  }
+  .reset-margin-small-screen {
+    margin: 1rem !important;
+  }
+  .no-margin {
+    margin: 0 !important;
+  }
+  .no-margin-bottom {
+    margin-bottom: 0 !important;
   }
   h1 {
     font-size: 4rem;
