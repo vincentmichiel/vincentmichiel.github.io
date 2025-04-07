@@ -48094,7 +48094,609 @@ var VectorSource = /*#__PURE__*/function (_Source) {
   }]);
 }(_Source2.default);
 var _default = exports.default = VectorSource;
-},{"../Collection.js":"../node_modules/ol/Collection.js","../CollectionEventType.js":"../node_modules/ol/CollectionEventType.js","../ObjectEventType.js":"../node_modules/ol/ObjectEventType.js","../array.js":"../node_modules/ol/array.js","../asserts.js":"../node_modules/ol/asserts.js","../events/Event.js":"../node_modules/ol/events/Event.js","../events/EventType.js":"../node_modules/ol/events/EventType.js","../events.js":"../node_modules/ol/events.js","../extent.js":"../node_modules/ol/extent.js","../featureloader.js":"../node_modules/ol/featureloader.js","../functions.js":"../node_modules/ol/functions.js","../loadingstrategy.js":"../node_modules/ol/loadingstrategy.js","../obj.js":"../node_modules/ol/obj.js","../render/Feature.js":"../node_modules/ol/render/Feature.js","../structs/RBush.js":"../node_modules/ol/structs/RBush.js","../util.js":"../node_modules/ol/util.js","./Source.js":"../node_modules/ol/source/Source.js","./VectorEventType.js":"../node_modules/ol/source/VectorEventType.js"}],"main.js":[function(require,module,exports) {
+},{"../Collection.js":"../node_modules/ol/Collection.js","../CollectionEventType.js":"../node_modules/ol/CollectionEventType.js","../ObjectEventType.js":"../node_modules/ol/ObjectEventType.js","../array.js":"../node_modules/ol/array.js","../asserts.js":"../node_modules/ol/asserts.js","../events/Event.js":"../node_modules/ol/events/Event.js","../events/EventType.js":"../node_modules/ol/events/EventType.js","../events.js":"../node_modules/ol/events.js","../extent.js":"../node_modules/ol/extent.js","../featureloader.js":"../node_modules/ol/featureloader.js","../functions.js":"../node_modules/ol/functions.js","../loadingstrategy.js":"../node_modules/ol/loadingstrategy.js","../obj.js":"../node_modules/ol/obj.js","../render/Feature.js":"../node_modules/ol/render/Feature.js","../structs/RBush.js":"../node_modules/ol/structs/RBush.js","../util.js":"../node_modules/ol/util.js","./Source.js":"../node_modules/ol/source/Source.js","./VectorEventType.js":"../node_modules/ol/source/VectorEventType.js"}],"../node_modules/ol/Overlay.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _MapEventType = _interopRequireDefault(require("./MapEventType.js"));
+var _Object = _interopRequireDefault(require("./Object.js"));
+var _css = require("./css.js");
+var _dom = require("./dom.js");
+var _events = require("./events.js");
+var _extent = require("./extent.js");
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
+function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
+function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); } /**
+ * @module ol/Overlay
+ */
+/**
+ * @typedef {'bottom-left' | 'bottom-center' | 'bottom-right' | 'center-left' | 'center-center' | 'center-right' | 'top-left' | 'top-center' | 'top-right'} Positioning
+ * The overlay position: `'bottom-left'`, `'bottom-center'`,  `'bottom-right'`,
+ * `'center-left'`, `'center-center'`, `'center-right'`, `'top-left'`,
+ * `'top-center'`, or `'top-right'`.
+ */
+
+/**
+ * @typedef {Object} Options
+ * @property {number|string} [id] Set the overlay id. The overlay id can be used
+ * with the {@link module:ol/Map~Map#getOverlayById} method.
+ * @property {HTMLElement} [element] The overlay element.
+ * @property {Array<number>} [offset=[0, 0]] Offsets in pixels used when positioning
+ * the overlay. The first element in the
+ * array is the horizontal offset. A positive value shifts the overlay right.
+ * The second element in the array is the vertical offset. A positive value
+ * shifts the overlay down.
+ * @property {import("./coordinate.js").Coordinate} [position] The overlay position
+ * in map projection.
+ * @property {Positioning} [positioning='top-left'] Defines how
+ * the overlay is actually positioned with respect to its `position` property.
+ * Possible values are `'bottom-left'`, `'bottom-center'`, `'bottom-right'`,
+ * `'center-left'`, `'center-center'`, `'center-right'`, `'top-left'`,
+ * `'top-center'`, and `'top-right'`.
+ * @property {boolean} [stopEvent=true] Whether event propagation to the map
+ * viewport should be stopped. If `true` the overlay is placed in the same
+ * container as that of the controls (CSS class name
+ * `ol-overlaycontainer-stopevent`); if `false` it is placed in the container
+ * with CSS class name specified by the `className` property.
+ * @property {boolean} [insertFirst=true] Whether the overlay is inserted first
+ * in the overlay container, or appended. If the overlay is placed in the same
+ * container as that of the controls (see the `stopEvent` option) you will
+ * probably set `insertFirst` to `true` so the overlay is displayed below the
+ * controls.
+ * @property {PanIntoViewOptions|boolean} [autoPan=false] Pan the map when calling
+ * `setPosition`, so that the overlay is entirely visible in the current viewport.
+ * @property {string} [className='ol-overlay-container ol-selectable'] CSS class
+ * name.
+ */
+
+/**
+ * @typedef {Object} PanOptions
+ * @property {number} [duration=1000] The duration of the animation in
+ * milliseconds.
+ * @property {function(number):number} [easing] The easing function to use. Can
+ * be one from {@link module:ol/easing} or a custom function.
+ * Default is {@link module:ol/easing.inAndOut}.
+ */
+
+/**
+ * @typedef {Object} PanIntoViewOptions
+ * @property {PanOptions} [animation={}] The animation parameters for the pan
+ * @property {number} [margin=20] The margin (in pixels) between the
+ * overlay and the borders of the map when panning into view.
+ */
+
+/**
+ * @enum {string}
+ * @protected
+ */
+var Property = {
+  ELEMENT: 'element',
+  MAP: 'map',
+  OFFSET: 'offset',
+  POSITION: 'position',
+  POSITIONING: 'positioning'
+};
+
+/**
+ * @typedef {import("./ObjectEventType").Types|'change:element'|'change:map'|'change:offset'|'change:position'|
+ *   'change:positioning'} OverlayObjectEventTypes
+ */
+
+/***
+ * @template Return
+ * @typedef {import("./Observable").OnSignature<import("./Observable").EventTypes, import("./events/Event.js").default, Return> &
+ *   import("./Observable").OnSignature<OverlayObjectEventTypes, import("./Object").ObjectEvent, Return> &
+ *   import("./Observable").CombinedOnSignature<import("./Observable").EventTypes|OverlayObjectEventTypes, Return>} OverlayOnSignature
+ */
+
+/**
+ * @classdesc
+ * An element to be displayed over the map and attached to a single map
+ * location.  Like {@link module:ol/control/Control~Control}, Overlays are
+ * visible widgets. Unlike Controls, they are not in a fixed position on the
+ * screen, but are tied to a geographical coordinate, so panning the map will
+ * move an Overlay but not a Control.
+ *
+ * Example:
+ *
+ *     import Overlay from 'ol/Overlay.js';
+ *
+ *     // ...
+ *     const popup = new Overlay({
+ *       element: document.getElementById('popup'),
+ *     });
+ *     popup.setPosition(coordinate);
+ *     map.addOverlay(popup);
+ *
+ * @api
+ */
+var Overlay = /*#__PURE__*/function (_BaseObject) {
+  /**
+   * @param {Options} options Overlay options.
+   */
+  function Overlay(options) {
+    var _this;
+    _classCallCheck(this, Overlay);
+    _this = _callSuper(this, Overlay);
+
+    /***
+     * @type {OverlayOnSignature<import("./events").EventsKey>}
+     */
+    _this.on;
+
+    /***
+     * @type {OverlayOnSignature<import("./events").EventsKey>}
+     */
+    _this.once;
+
+    /***
+     * @type {OverlayOnSignature<void>}
+     */
+    _this.un;
+
+    /**
+     * @protected
+     * @type {Options}
+     */
+    _this.options = options;
+
+    /**
+     * @protected
+     * @type {number|string|undefined}
+     */
+    _this.id = options.id;
+
+    /**
+     * @protected
+     * @type {boolean}
+     */
+    _this.insertFirst = options.insertFirst !== undefined ? options.insertFirst : true;
+
+    /**
+     * @protected
+     * @type {boolean}
+     */
+    _this.stopEvent = options.stopEvent !== undefined ? options.stopEvent : true;
+
+    /**
+     * @protected
+     * @type {HTMLElement}
+     */
+    _this.element = document.createElement('div');
+    _this.element.className = options.className !== undefined ? options.className : 'ol-overlay-container ' + _css.CLASS_SELECTABLE;
+    _this.element.style.position = 'absolute';
+    _this.element.style.pointerEvents = 'auto';
+
+    /**
+     * @protected
+     * @type {PanIntoViewOptions|undefined}
+     */
+    _this.autoPan = options.autoPan === true ? {} : options.autoPan || undefined;
+
+    /**
+     * @protected
+     * @type {{transform_: string,
+     *         visible: boolean}}
+     */
+    _this.rendered = {
+      transform_: '',
+      visible: true
+    };
+
+    /**
+     * @protected
+     * @type {?import("./events.js").EventsKey}
+     */
+    _this.mapPostrenderListenerKey = null;
+    _this.addChangeListener(Property.ELEMENT, _this.handleElementChanged);
+    _this.addChangeListener(Property.MAP, _this.handleMapChanged);
+    _this.addChangeListener(Property.OFFSET, _this.handleOffsetChanged);
+    _this.addChangeListener(Property.POSITION, _this.handlePositionChanged);
+    _this.addChangeListener(Property.POSITIONING, _this.handlePositioningChanged);
+    if (options.element !== undefined) {
+      _this.setElement(options.element);
+    }
+    _this.setOffset(options.offset !== undefined ? options.offset : [0, 0]);
+    _this.setPositioning(options.positioning || 'top-left');
+    if (options.position !== undefined) {
+      _this.setPosition(options.position);
+    }
+    return _this;
+  }
+
+  /**
+   * Get the DOM element of this overlay.
+   * @return {HTMLElement|undefined} The Element containing the overlay.
+   * @observable
+   * @api
+   */
+  _inherits(Overlay, _BaseObject);
+  return _createClass(Overlay, [{
+    key: "getElement",
+    value: function getElement() {
+      return /** @type {HTMLElement|undefined} */this.get(Property.ELEMENT);
+    }
+
+    /**
+     * Get the overlay identifier which is set on constructor.
+     * @return {number|string|undefined} Id.
+     * @api
+     */
+  }, {
+    key: "getId",
+    value: function getId() {
+      return this.id;
+    }
+
+    /**
+     * Get the map associated with this overlay.
+     * @return {import("./Map.js").default|null} The map that the
+     * overlay is part of.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "getMap",
+    value: function getMap() {
+      return /** @type {import("./Map.js").default|null} */this.get(Property.MAP) || null;
+    }
+
+    /**
+     * Get the offset of this overlay.
+     * @return {Array<number>} The offset.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "getOffset",
+    value: function getOffset() {
+      return /** @type {Array<number>} */this.get(Property.OFFSET);
+    }
+
+    /**
+     * Get the current position of this overlay.
+     * @return {import("./coordinate.js").Coordinate|undefined} The spatial point that the overlay is
+     *     anchored at.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "getPosition",
+    value: function getPosition() {
+      return /** @type {import("./coordinate.js").Coordinate|undefined} */this.get(Property.POSITION);
+    }
+
+    /**
+     * Get the current positioning of this overlay.
+     * @return {Positioning} How the overlay is positioned
+     *     relative to its point on the map.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "getPositioning",
+    value: function getPositioning() {
+      return /** @type {Positioning} */this.get(Property.POSITIONING);
+    }
+
+    /**
+     * @protected
+     */
+  }, {
+    key: "handleElementChanged",
+    value: function handleElementChanged() {
+      (0, _dom.removeChildren)(this.element);
+      var element = this.getElement();
+      if (element) {
+        this.element.appendChild(element);
+      }
+    }
+
+    /**
+     * @protected
+     */
+  }, {
+    key: "handleMapChanged",
+    value: function handleMapChanged() {
+      if (this.mapPostrenderListenerKey) {
+        var _this$element;
+        (_this$element = this.element) === null || _this$element === void 0 || _this$element.remove();
+        (0, _events.unlistenByKey)(this.mapPostrenderListenerKey);
+        this.mapPostrenderListenerKey = null;
+      }
+      var map = this.getMap();
+      if (map) {
+        this.mapPostrenderListenerKey = (0, _events.listen)(map, _MapEventType.default.POSTRENDER, this.render, this);
+        this.updatePixelPosition();
+        var container = this.stopEvent ? map.getOverlayContainerStopEvent() : map.getOverlayContainer();
+        if (this.insertFirst) {
+          container.insertBefore(this.element, container.childNodes[0] || null);
+        } else {
+          container.appendChild(this.element);
+        }
+        this.performAutoPan();
+      }
+    }
+
+    /**
+     * @protected
+     */
+  }, {
+    key: "render",
+    value: function render() {
+      this.updatePixelPosition();
+    }
+
+    /**
+     * @protected
+     */
+  }, {
+    key: "handleOffsetChanged",
+    value: function handleOffsetChanged() {
+      this.updatePixelPosition();
+    }
+
+    /**
+     * @protected
+     */
+  }, {
+    key: "handlePositionChanged",
+    value: function handlePositionChanged() {
+      this.updatePixelPosition();
+      this.performAutoPan();
+    }
+
+    /**
+     * @protected
+     */
+  }, {
+    key: "handlePositioningChanged",
+    value: function handlePositioningChanged() {
+      this.updatePixelPosition();
+    }
+
+    /**
+     * Set the DOM element to be associated with this overlay.
+     * @param {HTMLElement|undefined} element The Element containing the overlay.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "setElement",
+    value: function setElement(element) {
+      this.set(Property.ELEMENT, element);
+    }
+
+    /**
+     * Set the map to be associated with this overlay.
+     * @param {import("./Map.js").default|null} map The map that the
+     * overlay is part of. Pass `null` to just remove the overlay from the current map.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "setMap",
+    value: function setMap(map) {
+      this.set(Property.MAP, map);
+    }
+
+    /**
+     * Set the offset for this overlay.
+     * @param {Array<number>} offset Offset.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "setOffset",
+    value: function setOffset(offset) {
+      this.set(Property.OFFSET, offset);
+    }
+
+    /**
+     * Set the position for this overlay. If the position is `undefined` the
+     * overlay is hidden.
+     * @param {import("./coordinate.js").Coordinate|undefined} position The spatial point that the overlay
+     *     is anchored at.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "setPosition",
+    value: function setPosition(position) {
+      this.set(Property.POSITION, position);
+    }
+
+    /**
+     * Pan the map so that the overlay is entirely visible in the current viewport
+     * (if necessary) using the configured autoPan parameters
+     * @protected
+     */
+  }, {
+    key: "performAutoPan",
+    value: function performAutoPan() {
+      if (this.autoPan) {
+        this.panIntoView(this.autoPan);
+      }
+    }
+
+    /**
+     * Pan the map so that the overlay is entirely visible in the current viewport
+     * (if necessary).
+     * @param {PanIntoViewOptions} [panIntoViewOptions] Options for the pan action
+     * @api
+     */
+  }, {
+    key: "panIntoView",
+    value: function panIntoView(panIntoViewOptions) {
+      var map = this.getMap();
+      if (!map || !map.getTargetElement() || !this.get(Property.POSITION)) {
+        return;
+      }
+      var mapRect = this.getRect(map.getTargetElement(), map.getSize());
+      var element = this.getElement();
+      var overlayRect = this.getRect(element, [(0, _dom.outerWidth)(element), (0, _dom.outerHeight)(element)]);
+      panIntoViewOptions = panIntoViewOptions || {};
+      var myMargin = panIntoViewOptions.margin === undefined ? 20 : panIntoViewOptions.margin;
+      if (!(0, _extent.containsExtent)(mapRect, overlayRect)) {
+        // the overlay is not completely inside the viewport, so pan the map
+        var offsetLeft = overlayRect[0] - mapRect[0];
+        var offsetRight = mapRect[2] - overlayRect[2];
+        var offsetTop = overlayRect[1] - mapRect[1];
+        var offsetBottom = mapRect[3] - overlayRect[3];
+        var delta = [0, 0];
+        if (offsetLeft < 0) {
+          // move map to the left
+          delta[0] = offsetLeft - myMargin;
+        } else if (offsetRight < 0) {
+          // move map to the right
+          delta[0] = Math.abs(offsetRight) + myMargin;
+        }
+        if (offsetTop < 0) {
+          // move map up
+          delta[1] = offsetTop - myMargin;
+        } else if (offsetBottom < 0) {
+          // move map down
+          delta[1] = Math.abs(offsetBottom) + myMargin;
+        }
+        if (delta[0] !== 0 || delta[1] !== 0) {
+          var center = /** @type {import("./coordinate.js").Coordinate} */
+          map.getView().getCenterInternal();
+          var centerPx = map.getPixelFromCoordinateInternal(center);
+          if (!centerPx) {
+            return;
+          }
+          var newCenterPx = [centerPx[0] + delta[0], centerPx[1] + delta[1]];
+          var panOptions = panIntoViewOptions.animation || {};
+          map.getView().animateInternal({
+            center: map.getCoordinateFromPixelInternal(newCenterPx),
+            duration: panOptions.duration,
+            easing: panOptions.easing
+          });
+        }
+      }
+    }
+
+    /**
+     * Get the extent of an element relative to the document
+     * @param {HTMLElement} element The element.
+     * @param {import("./size.js").Size} size The size of the element.
+     * @return {import("./extent.js").Extent} The extent.
+     * @protected
+     */
+  }, {
+    key: "getRect",
+    value: function getRect(element, size) {
+      var box = element.getBoundingClientRect();
+      var offsetX = box.left + window.pageXOffset;
+      var offsetY = box.top + window.pageYOffset;
+      return [offsetX, offsetY, offsetX + size[0], offsetY + size[1]];
+    }
+
+    /**
+     * Set the positioning for this overlay.
+     * @param {Positioning} positioning how the overlay is
+     *     positioned relative to its point on the map.
+     * @observable
+     * @api
+     */
+  }, {
+    key: "setPositioning",
+    value: function setPositioning(positioning) {
+      this.set(Property.POSITIONING, positioning);
+    }
+
+    /**
+     * Modify the visibility of the element.
+     * @param {boolean} visible Element visibility.
+     * @protected
+     */
+  }, {
+    key: "setVisible",
+    value: function setVisible(visible) {
+      if (this.rendered.visible !== visible) {
+        this.element.style.display = visible ? '' : 'none';
+        this.rendered.visible = visible;
+      }
+    }
+
+    /**
+     * Update pixel position.
+     * @protected
+     */
+  }, {
+    key: "updatePixelPosition",
+    value: function updatePixelPosition() {
+      var map = this.getMap();
+      var position = this.getPosition();
+      if (!map || !map.isRendered() || !position) {
+        this.setVisible(false);
+        return;
+      }
+      var pixel = map.getPixelFromCoordinate(position);
+      var mapSize = map.getSize();
+      this.updateRenderedPosition(pixel, mapSize);
+    }
+
+    /**
+     * @param {import("./pixel.js").Pixel} pixel The pixel location.
+     * @param {import("./size.js").Size|undefined} mapSize The map size.
+     * @protected
+     */
+  }, {
+    key: "updateRenderedPosition",
+    value: function updateRenderedPosition(pixel, mapSize) {
+      var style = this.element.style;
+      var offset = this.getOffset();
+      var positioning = this.getPositioning();
+      this.setVisible(true);
+      var x = Math.round(pixel[0] + offset[0]) + 'px';
+      var y = Math.round(pixel[1] + offset[1]) + 'px';
+      var posX = '0%';
+      var posY = '0%';
+      if (positioning == 'bottom-right' || positioning == 'center-right' || positioning == 'top-right') {
+        posX = '-100%';
+      } else if (positioning == 'bottom-center' || positioning == 'center-center' || positioning == 'top-center') {
+        posX = '-50%';
+      }
+      if (positioning == 'bottom-left' || positioning == 'bottom-center' || positioning == 'bottom-right') {
+        posY = '-100%';
+      } else if (positioning == 'center-left' || positioning == 'center-center' || positioning == 'center-right') {
+        posY = '-50%';
+      }
+      var transform = "translate(".concat(posX, ", ").concat(posY, ") translate(").concat(x, ", ").concat(y, ")");
+      if (this.rendered.transform_ != transform) {
+        this.rendered.transform_ = transform;
+        style.transform = transform;
+      }
+    }
+
+    /**
+     * returns the options this Overlay has been created with
+     * @return {Options} overlay options
+     */
+  }, {
+    key: "getOptions",
+    value: function getOptions() {
+      return this.options;
+    }
+  }]);
+}(_Object.default);
+var _default = exports.default = Overlay;
+},{"./MapEventType.js":"../node_modules/ol/MapEventType.js","./Object.js":"../node_modules/ol/Object.js","./css.js":"../node_modules/ol/css.js","./dom.js":"../node_modules/ol/dom.js","./events.js":"../node_modules/ol/events.js","./extent.js":"../node_modules/ol/extent.js"}],"main.js":[function(require,module,exports) {
 "use strict";
 
 require("ol/ol.css");
@@ -48109,7 +48711,14 @@ var _Feature = _interopRequireDefault(require("ol/Feature"));
 var _Point = _interopRequireDefault(require("ol/geom/Point"));
 var _Style = _interopRequireDefault(require("ol/style/Style"));
 var _Icon = _interopRequireDefault(require("ol/style/Icon"));
+var _Overlay = _interopRequireDefault(require("ol/Overlay"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 // Create map
 var map = new _Map.default({
   target: 'map',
@@ -48123,38 +48732,94 @@ var map = new _Map.default({
   })
 });
 
+// --- POINT OF INTEREST (POI) SETUP ---
+var poiCoords = [5.134037, 52.080354]; // Example: Amsterdam center (lon, lat)
+
+var poiFeature = new _Feature.default({
+  geometry: new _Point.default((0, _proj.fromLonLat)(poiCoords))
+});
+poiFeature.setStyle(new _Style.default({
+  image: new _Icon.default({
+    src: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+    scale: 0.05
+  })
+}));
+var poiSource = new _Vector2.default({
+  features: [poiFeature]
+});
+var poiLayer = new _Vector.default({
+  source: poiSource
+});
+map.addLayer(poiLayer);
+
+// --- POPUP SETUP ---
+var popupElement = document.createElement('div');
+popupElement.className = 'ol-popup';
+popupElement.style.background = 'white';
+popupElement.style.padding = '10px';
+popupElement.style.borderRadius = '8px';
+popupElement.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+popupElement.style.position = 'absolute';
+var popupOverlay = new _Overlay.default({
+  element: popupElement,
+  positioning: 'bottom-center',
+  stopEvent: false,
+  offset: [0, -15]
+});
+map.addOverlay(popupOverlay);
+
+// --- DISTANCE CHECK FUNCTION ---
+function getDistanceMeters(coord1, coord2) {
+  var _coord = _slicedToArray(coord1, 2),
+    lon1 = _coord[0],
+    lat1 = _coord[1];
+  var _coord2 = _slicedToArray(coord2, 2),
+    lon2 = _coord2[0],
+    lat2 = _coord2[1];
+  var R = 6371000; // Radius of the Earth in meters
+  var toRad = function toRad(x) {
+    return x * Math.PI / 180;
+  };
+  var dLat = toRad(lat2 - lat1);
+  var dLon = toRad(lon2 - lon1);
+  var a = Math.pow(Math.sin(dLat / 2), 2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.pow(Math.sin(dLon / 2), 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Distance in meters
+}
+
 // Create a vector source to store the user's location
 var userLocationSource = new _Vector2.default();
 var userLocationLayer = new _Vector.default({
   source: userLocationSource
 });
 map.addLayer(userLocationLayer);
-
-// Function to update user location
 function updateUserLocation(coords) {
-  // Clear previous location marker
   userLocationSource.clear();
-
-  // Create a new location marker
   var userLocation = new _Feature.default({
     geometry: new _Point.default((0, _proj.fromLonLat)(coords))
   });
   userLocation.setStyle(new _Style.default({
     image: new _Icon.default({
       src: 'https://cdn-icons-png.flaticon.com/512/447/447031.png',
-      // Marker icon
       scale: 0.05
     })
   }));
-
-  // Add updated location to the map
   userLocationSource.addFeature(userLocation);
-
-  // Smoothly move the map view to the new location
   map.getView().animate({
     center: (0, _proj.fromLonLat)(coords),
-    duration: 500 // Animation duration (in ms)
+    duration: 500
   });
+
+  // Check distance to POI
+  var distance = getDistanceMeters(coords, poiCoords);
+  document.getElementById('info').innerHTML = "<span>distance: ".concat(distance.toFixed(2), " meters</span>");
+  console.log("Distance to POI: ".concat(distance.toFixed(2), " meters"));
+  if (distance <= 10) {
+    popupElement.innerHTML = "\n            <strong>Point of Interest</strong><br>\n            You're within 10 meters! \uD83C\uDF89<br>\n            This is a cool place. \uD83D\uDE0E\n        ";
+    popupOverlay.setPosition((0, _proj.fromLonLat)(poiCoords));
+  } else {
+    popupOverlay.setPosition(undefined); // Hide popup
+  }
 }
 
 // Watch the user's location continuously
@@ -48175,7 +48840,7 @@ if (navigator.geolocation) {
 } else {
   console.error('Geolocation is not supported by this browser.');
 }
-},{"ol/ol.css":"../node_modules/ol/ol.css","ol/Map":"../node_modules/ol/Map.js","ol/View":"../node_modules/ol/View.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/proj":"../node_modules/ol/proj.js","ol/layer/Vector":"../node_modules/ol/layer/Vector.js","ol/source/Vector":"../node_modules/ol/source/Vector.js","ol/Feature":"../node_modules/ol/Feature.js","ol/geom/Point":"../node_modules/ol/geom/Point.js","ol/style/Style":"../node_modules/ol/style/Style.js","ol/style/Icon":"../node_modules/ol/style/Icon.js"}],"../../../../../../../opt/homebrew/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"ol/ol.css":"../node_modules/ol/ol.css","ol/Map":"../node_modules/ol/Map.js","ol/View":"../node_modules/ol/View.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/proj":"../node_modules/ol/proj.js","ol/layer/Vector":"../node_modules/ol/layer/Vector.js","ol/source/Vector":"../node_modules/ol/source/Vector.js","ol/Feature":"../node_modules/ol/Feature.js","ol/geom/Point":"../node_modules/ol/geom/Point.js","ol/style/Style":"../node_modules/ol/style/Style.js","ol/style/Icon":"../node_modules/ol/style/Icon.js","ol/Overlay":"../node_modules/ol/Overlay.js"}],"../../../../../../../opt/homebrew/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -48200,7 +48865,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51071" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51380" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
